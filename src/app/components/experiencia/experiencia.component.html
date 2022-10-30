@@ -1,0 +1,116 @@
+<!-- Cuerpo Princpal -->
+<div class="container-fluid table-responsive">
+    <h3>
+        Experiencia Laboral
+        <button type="button" class="btn btn-dark" 
+            (click)="onModal(Add)" *ngIf="isLogged">
+            <i class="bi bi-plus-circle"></i>
+        </button>
+    </h3>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Empresa</th>
+                <th>Lugar</th>
+                <th>Cargo</th>
+                <th *ngIf="isLogged">---</th>
+                <th *ngIf="isLogged">---</th>
+            </tr>
+            <tr *ngFor="let campo of arreglo">
+                <td>{{campo.empresa}}</td>
+                <td>{{campo.lugar}}</td>
+                <td>{{campo.cargo}}</td>
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-success" 
+                        (click)="onLocate(campo.id, Mod)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                </td>
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-danger" 
+                        (click)="onDelete(campo.id)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Añadir Registro -->
+<ng-template #Add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Añadir Experiencia</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+            <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" class="form-control" 
+                    id="empresa" name="empresa" 
+                    [(ngModel)]="empresa" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" class="form-control" 
+                    id="lugar" name="lugar" 
+                    [(ngModel)]="lugar" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" 
+                    id="cargo" name="cargo" 
+                    [(ngModel)]="cargo" required />
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Añadir
+            </button>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Modificar Registro -->
+<ng-template #Mod let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Experiencia</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onUpdate(objeto.id)" novalidate #f="ngForm" *ngIf="objeto">
+            <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" class="form-control" 
+                    id="empresa" name="empresa" 
+                    [(ngModel)]="objeto.empresa" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" class="form-control" 
+                    id="lugar" name="lugar" 
+                    [(ngModel)]="objeto.lugar" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" 
+                    id="cargo" name="cargo" 
+                    [(ngModel)]="objeto.cargo" required />
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Actualizar
+            </button>
+        </form>
+    </div>
+</ng-template>

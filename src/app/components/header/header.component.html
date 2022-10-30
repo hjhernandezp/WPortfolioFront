@@ -1,0 +1,32 @@
+<!-- Área Superior -->
+<div id="AreaHeader" class="container-fluid">
+    <div class="row">
+        <div id="SeccionLogo" class="col-6">
+            <img id="LogoArgentinaPrograma"
+            src="../../../assets/Logo_ArgentinaPrograma.png">
+        </div>
+        <div id="SeccionBotones" class="col-6">
+            <a href="https://github.com/hjhernandezp" target="_blank">
+                <img src="../../../assets/Logo_GitHub.png" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/hecherpet/" target="_blank">
+                <img src="../../../assets/Logo_LinkedIn.png" alt="">
+            </a>
+            <a href="https://www.facebook.com/hecherpet" target="_blank">
+                <img src="../../../assets/Logo_Facebook.png" alt="">
+            </a>
+            <a href="https://www.instagram.com/hecherpet" target="_blank">
+                <img src="../../../assets/Logo_Instagram.png" alt="">
+            </a>
+            <a href="https://twitter.com/hjhernandezp" target="_blank">
+                <img src="../../../assets/Logo_Twitter.png" alt="">
+            </a>
+            <button type="button" 
+                class="btn btn-outline-light" (click)="login()" *ngIf="!isLogged">Ingresar
+            </button>
+            <button type="button" 
+                class="btn btn-outline-light" (click)="onLogOut()" *ngIf="isLogged">Salir
+            </button>
+        </div>
+    </div>
+</div>

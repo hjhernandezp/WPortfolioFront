@@ -1,0 +1,149 @@
+<!-- Cuerpo Princpal -->
+<div class="container-fluid table-responsive">
+    <h3>
+        Proyectos Desarrollados
+        <button type="button" class="btn btn-dark" 
+            (click)="onModal(Add)" *ngIf="isLogged">
+            <i class="bi bi-plus-circle"></i>
+        </button>
+    </h3>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Enlace</th>
+                <!-- <th>Imagen</th> -->
+                <th *ngIf="isLogged">---</th>
+                <th *ngIf="isLogged">---</th>
+            </tr>
+            <tr *ngFor="let campo of arreglo">
+                <td>{{campo.nombre}}</td>
+                <td>{{campo.descripcion}}</td>
+                <td>{{campo.enlace}}</td>
+                <!-- <td>
+                    <img class="mx-auto d-block" 
+                    src={{campo.imagen}} img="img-fluid" width="80px">
+                </td> -->
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-success" 
+                        (click)="onLocate(campo.id, Mod)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                </td>
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-danger" 
+                        (click)="onDelete(campo.id)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Añadir Registro -->
+<ng-template #Add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Añadir Proyectos</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" 
+                    id="nombre" name="nombre" 
+                    [(ngModel)]="nombre" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea type="textarea" class="form-control" 
+                    id="descripcion" name="descripcion" 
+                    [(ngModel)]="descripcion" rows="3">
+                </textarea>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="cargo">Enlace</label>
+                <input type="text" class="form-control" 
+                    id="enlace" name="enlace" 
+                    [(ngModel)]="enlace" />
+            </div>
+            <p></p>
+            <!-- <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control" 
+                    id="imagen" name="imagen" 
+                    [(ngModel)]="imagen"
+                    (change)="onImage($event)"
+                    accept=".png, .jpg, .jpeg" />
+            </div>
+            <p></p>
+            <div *ngIf="imagen">
+                <img [src]="SerImagen.url" alt="" width="100px">
+            </div>
+            <p></p> -->
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Añadir
+            </button>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Modificar Registro -->
+<ng-template #Mod let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Proyectos</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onUpdate(objeto.id)" novalidate #f="ngForm" *ngIf="objeto">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" 
+                    id="nombre" name="nombre" 
+                    [(ngModel)]="objeto.nombre" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea type="textarea" class="form-control" 
+                    id="descripcion" name="descripcion" 
+                    [(ngModel)]="objeto.descripcion" rows="3">
+                </textarea>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="enlace">Enlace</label>
+                <input type="text" class="form-control" 
+                    id="enlace" name="enlace" 
+                    [(ngModel)]="objeto.enlace" />
+            </div>
+            <p></p>
+            <!-- <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control" 
+                    id="imagen" name="imagen" 
+                    [(ngModel)]="objeto.imagen" 
+                    (change)="onImage($event)"
+                    accept=".png, .jpg, .jpeg" />
+            </div>
+            <p></p>
+            <div *ngIf="objeto.imagen">
+                <img [src]="SerImagen.url" alt="" width="100px">
+            </div>
+            <p></p> -->
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Actualizar
+            </button>
+        </form>
+    </div>
+</ng-template>

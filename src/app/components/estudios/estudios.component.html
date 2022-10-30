@@ -1,0 +1,148 @@
+<!-- Cuerpo Princpal -->
+<div class="container-fluid table-responsive">
+    <h3>
+        Estudios Realizados
+        <button type="button" class="btn btn-dark" 
+            (click)="onModal(Add)" *ngIf="isLogged">
+            <i class="bi bi-plus-circle"></i>
+        </button>
+    </h3>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>Carrera</th>
+                <th>Mencion</th>
+                <th>Estado</th>
+                <th>Instituo</th>
+                <th>Lugar</th>
+                <th *ngIf="isLogged">---</th>
+                <th *ngIf="isLogged">---</th>
+            </tr>
+            <tr *ngFor="let campo of arreglo">
+                <td>{{campo.carrera}}</td>
+                <td>{{campo.mencion}}</td>
+                <td>{{campo.estado}}</td>
+                <td>{{campo.instituto}}</td>
+                <td>{{campo.lugar}}</td>
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-success" 
+                        (click)="onLocate(campo.id, Mod)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                </td>
+                <td *ngIf="isLogged">
+                    <button type="button" class="btn btn-danger" 
+                        (click)="onDelete(campo.id)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Añadir Registro -->
+<ng-template #Add let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Añadir Estudios</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+            <div class="form-group">
+                <label for="carrera">Carrera</label>
+                <input type="text" class="form-control" 
+                    id="carrera" name="carrera" 
+                    [(ngModel)]="carrera" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="mencion">Mención</label>
+                <input type="text" class="form-control" 
+                    id="mencion" name="mencion" 
+                    [(ngModel)]="mencion" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" 
+                    id="estado" name="estado" 
+                    [(ngModel)]="estado" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="instituto">Instituto</label>
+                <input type="text" class="form-control" 
+                    id="instituto" name="instituto" 
+                    [(ngModel)]="instituto" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" class="form-control" 
+                    id="lugar" name="lugar" 
+                    [(ngModel)]="lugar" />
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Añadir
+            </button>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Modificar Registro -->
+<ng-template #Mod let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Estudios</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onUpdate(objeto.id)" novalidate #f="ngForm" *ngIf="objeto">
+            <div class="form-group">
+                <label for="carrera">Carrera</label>
+                <input type="text" class="form-control" 
+                    id="carrera" name="carrera" 
+                    [(ngModel)]="objeto.carrera" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="mencion">Mención</label>
+                <input type="text" class="form-control" 
+                    id="mencion" name="mencion" 
+                    [(ngModel)]="objeto.mencion" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" 
+                    id="estado" name="estado" 
+                    [(ngModel)]="objeto.estado" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="instituto">Instituto</label>
+                <input type="text" class="form-control" 
+                    id="instituto" name="instituto" 
+                    [(ngModel)]="objeto.instituto" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" class="form-control" 
+                    id="lugar" name="lugar" 
+                    [(ngModel)]="objeto.lugar" />
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-success" 
+                (click)="modal.close()">Actualizar
+            </button>
+        </form>
+    </div>
+</ng-template>

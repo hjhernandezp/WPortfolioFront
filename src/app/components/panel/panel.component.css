@@ -1,0 +1,12 @@
+#AreaPanel {
+    width: auto;
+    height: auto;
+    min-height: 300px;
+    background-color: #B0C4DE;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tab-content {
+    margin-left: 4px;
+}

@@ -1,0 +1,37 @@
+#AreaAbout{
+    width: auto;
+    height: auto;
+    padding: 6px;
+}
+
+#SeccionAbout1 {
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+#SeccionAbout2 {
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+#SeccionAbout3 {
+    text-align: justify;
+    margin-bottom: 6px;
+}
+
+#FotoPerfil {
+    box-shadow: 3px 3px 3px #696969;
+    border-radius: 100%;
+    width: 72%;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 575px) {
+    #FotoPerfil {
+        width: 100px;
+        margin-top: 0;
+    }
+    #SeccionAbout1, #SeccionAbout2 {
+        text-align: center;
+    }
+}

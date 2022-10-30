@@ -1,0 +1,78 @@
+<!-- Cuerpo Princpal -->
+<div id="AreaAbout" class="container-fluid">
+    <div class="row" *ngIf="objeto">
+        <div id="SeccionAbout1" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">     
+            <img class="mx-auto d-block" id="FotoPerfil" 
+            src={{objeto.imagen}} img="img-fluid">
+        </div>
+        <div id="SeccionAbout2" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <h5>{{objeto.nombre}} {{objeto.apellido}}</h5>
+            <p>Full Stack Developer Jr.</p>
+            <div *ngIf="isLogged">
+                <button type="button" class="btn btn-success" 
+                    (click)="onModal(Mod)">
+                    <i class="bi bi-pencil-fill"> Editar </i>
+                </button>
+            </div>
+        </div>
+        <div id="SeccionAbout3" class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <h5>Acerca de mí</h5>
+            <p>{{objeto.descripcion}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modificar Registro -->
+<ng-template #Mod let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Persona</h4>     
+        <button type="button" class="close" aria-label="close" 
+            (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onUpdate(objeto.id)" novalidate #f="ngForm" *ngIf="objeto">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" 
+                    id="nombre" name="nombre" 
+                    [(ngModel)]="objeto.nombre" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" 
+                    id="apellido" name="apellido" 
+                    [(ngModel)]="objeto.apellido" required />
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea type="textarea" class="form-control" 
+                    id="descripcion" name="descripcion" 
+                    [(ngModel)]="objeto.descripcion" rows="4">
+                </textarea>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control" 
+                    id="imagen" name="imagen" 
+                    [(ngModel)]="objeto.imagen"
+                    (change)="onImage($event, objeto.id)"
+                    accept=".png, .jpg, .jpeg" />
+            </div>
+            <p></p>
+            <div class="imagen">
+                <img [src]="SerImage.url" alt="" width="80px">
+            </div>
+            <p></p>
+            <button type="submit" 
+                class="btn btn-success" 
+                (click)="modal.close()"
+                >Actualizar
+            </button>
+        </form>
+    </div>
+</ng-template>

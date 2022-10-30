@@ -1,0 +1,33 @@
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div h1, h2, h3 {
+    font-family: Tahoma;
+    font-weight: bold;
+}
+
+div h1 {
+    font-size: 1.8em;    
+}
+
+div h2 {
+    font-size: 1.5em;
+}
+
+div h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#sec_informacion {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.tab-content {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
