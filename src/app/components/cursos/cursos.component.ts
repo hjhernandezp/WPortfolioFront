@@ -74,8 +74,8 @@ export class CursosComponent implements OnInit {
     );
     this.SerComponent.save(cursos).subscribe(
       data => {
-        /* this.onLoad()
-        this.onReset() */
+        this.onLoad()
+        this.onReset()
         alert("Registro añadido correctamente en: Cursos")
       }, err=> {
         alert("Error de sistema al añadir: Cursos")

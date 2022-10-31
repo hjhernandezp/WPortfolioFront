@@ -56,7 +56,7 @@ export class EstudiosComponent implements OnInit {
     this.lugar = null;
   }
 
-  onLocate(id: number, guia: any) {
+  onLocate(id: number, guia: any): void {
     this.SerComponent.detail(id).subscribe(
       data => {
         this.objeto = data
