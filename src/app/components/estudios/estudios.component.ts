@@ -52,7 +52,7 @@ export class EstudiosComponent implements OnInit {
     this.carrera = null;
     this.mencion = null;
     this.estado = null;
-    this.instituto
+    this.instituto = null;
     this.lugar = null;
   }
 
